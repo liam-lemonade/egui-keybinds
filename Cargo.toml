@@ -3,6 +3,9 @@ name = "egui-keybinds"
 version = "0.1.0"
 edition = "2021"
 include = ["keybind/*.rs"]
+description = "Adds a keybind system to egui"
+keywords = ["egui", "input", "keyboard", "keybind"]
+categories = ["gui"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
