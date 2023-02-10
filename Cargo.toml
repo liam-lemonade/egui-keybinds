@@ -14,3 +14,6 @@ egui = "0.20.1"
 eframe = "0.20.1"
 egui-modal = "0.2.0"
 device_query = "1.1.2"
+
+[lib]
+path = "keybind"
