@@ -1,0 +1,13 @@
+[package]
+name = "basic"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+egui-keybinds = "0.1.0"
+egui = "0.20.1"
+eframe = "0.20.1"
+egui-modal = "0.2.0"
+device_query = "1.1.2"
