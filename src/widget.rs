@@ -44,7 +44,7 @@ impl<'a> KeybindWidget<'a> {
 
 impl KeybindWidget<'_> {
     fn draw_binding_modal(&mut self, ui: &mut Ui) -> Modal {
-        let modal = Modal::new(ui.ctx(), "my_modal");
+        let modal = Modal::new(ui.ctx(), "_binding_modal");
 
         modal.show(|ui| {
             modal.frame(ui, |ui| {
@@ -64,7 +64,7 @@ impl KeybindWidget<'_> {
 
         self.state.in_escape_ui = true; // fix None
 
-        let modal = Modal::new(ui.ctx(), "my_modal");
+        let modal = Modal::new(ui.ctx(), "_escape_modal");
         let mut result = false;
 
         modal.show(|ui| {
