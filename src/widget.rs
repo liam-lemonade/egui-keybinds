@@ -1,4 +1,4 @@
-use crate::keybind::*;
+use crate::*;
 use device_query::{DeviceQuery, DeviceState};
 use egui::{Align2, FontId, Id, Response, Sense, Ui, Widget};
 use egui_modal::Modal;

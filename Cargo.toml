@@ -2,7 +2,6 @@
 name = "egui-keybinds"
 version = "0.1.0"
 edition = "2021"
-include = ["keybind/*.rs"]
 description = "Adds a keybind system to egui"
 keywords = ["egui", "input", "keyboard", "keybind"]
 categories = ["gui"]
@@ -14,6 +13,3 @@ egui = "0.20.1"
 eframe = "0.20.1"
 egui-modal = "0.2.0"
 device_query = "1.1.2"
-
-[lib]
-path = "keybind"
