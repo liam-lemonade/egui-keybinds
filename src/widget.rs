@@ -22,6 +22,22 @@ struct KeybindWidgetState {
     mods: Vec<KeyModifier>,
 }
 
+impl Default for KeybindWidgetState {
+    fn default() -> Self {
+        KeybindWidgetState {
+            active: false,
+            device_state: DeviceState::new(),
+
+            escape_type: EscapeType::None,
+
+            last_keys: Vec::new(),
+            in_escape_ui: false,
+
+            mods: Vec::new(),
+        }
+    }
+}
+
 impl<'a> KeybindWidget<'a> {
     pub fn new(value: &'a mut KeyBind) -> Self {
         Self {
@@ -208,20 +224,10 @@ impl Widget for KeybindWidget<'_> {
 
         let (response, painter) = ui.allocate_painter(ui.spacing().interact_size, Sense::click());
 
-        self.state = ui
-            .data()
-            .get_temp(Id::null())
-            .unwrap_or(KeybindWidgetState {
-                active: false,
-                device_state: DeviceState::new(),
-
-                escape_type: EscapeType::None,
-
-                last_keys: Vec::new(),
-                in_escape_ui: false,
-
-                mods: Vec::new(),
-            });
+        self.state = ui.data_mut(|d| {
+            d.get_temp(Id::null())
+                .unwrap_or(KeybindWidgetState::default())
+        });
 
         let visuals = ui.style().interact_selectable(&response, self.state.active); // get the current interactable style settings
 
@@ -242,7 +248,7 @@ impl Widget for KeybindWidget<'_> {
             self.state.active = true; // clicked, now active keybind
         }
 
-        ui.data().insert_temp(Id::null(), self.state);
+        ui.data_mut(|d| d.insert_temp(Id::null(), self.state));
 
         return response;
     }
