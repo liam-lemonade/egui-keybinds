@@ -11,7 +11,7 @@ license = "GPL-3.0"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-egui = "0.20.1"
-eframe = "0.20.1"
-egui-modal = "0.2.0"
+egui = "0.21.0"
+eframe = "0.21.3"
+egui-modal = "0.2.2"
 device_query = "1.1.2"
