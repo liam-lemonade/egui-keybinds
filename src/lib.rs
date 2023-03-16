@@ -1,6 +1,8 @@
 extern crate device_query;
 extern crate eframe;
 extern crate egui;
+extern crate egui_modal;
+extern crate once_cell;
 
 pub mod keycodes;
 pub mod widget;
@@ -21,26 +23,53 @@ impl KeyBind {
         }
     }
 
-    pub fn simple_name(&self) -> String {
+    pub fn serialize(&mut self) -> String {
         match &self.key {
             Some(k) => {
                 let mut prefix = String::with_capacity(self.modifiers.len());
 
-                for modifier in &self.modifiers {
-                    let char = match modifier {
-                        KeyModifier::CtrlCmd => "^",
-                        KeyModifier::Shift => "_",
-                        KeyModifier::AltOpt => "*",
-                        KeyModifier::Function => "!",
-                    };
+                self.modifiers.sort();
 
-                    prefix += char;
+                for modifier in &self.modifiers {
+                    prefix.push(modifier.serialize());
                 }
 
-                return format!("{}{}", prefix, k.to_string());
+                return format!("{}{}", prefix, k.serialize());
             }
 
             None => "...".to_string(),
         }
+    }
+
+    pub fn deserialize(data: String) -> Result<Self, ()> {
+        let mut result: Result<Self, ()> = Err(());
+
+        let mut modifiers: Vec<KeyModifier> = vec![];
+
+        for (i, ch) in data.chars().enumerate() {
+            let deserialized_modifier = KeyModifier::deserialize(ch);
+
+            match deserialized_modifier {
+                Ok(modifier) => modifiers.push(modifier),
+
+                Err(_) => {
+                    let name_slice = &data[i..data.len()];
+
+                    let deserialized_key = KeyCode::deserialize(name_slice.to_string());
+
+                    match deserialized_key {
+                        Ok(key) => {
+                            result = Ok(Self::new(key, modifiers));
+                        }
+
+                        _ => (),
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        result
     }
 }

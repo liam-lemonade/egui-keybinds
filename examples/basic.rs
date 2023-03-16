@@ -36,5 +36,6 @@ fn main() {
     };
 
     let gui = Gui::new();
-    eframe::run_native("testing", options, Box::new(|_| Box::new(gui)));
+
+    eframe::run_native("testing", options, Box::new(|_| Box::new(gui))).unwrap();
 }

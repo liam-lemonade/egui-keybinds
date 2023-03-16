@@ -1,5 +1,9 @@
+use std::collections::HashMap;
+
+use once_cell::sync::Lazy;
+
 #[allow(dead_code)]
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Hash, Eq)]
 pub enum KeyCode {
     Escape,
     F1,
@@ -115,122 +119,137 @@ pub enum KeyCode {
     RightArrow,
 }
 
-impl ToString for KeyCode {
-    fn to_string(&self) -> String {
-        let str = match self {
-            KeyCode::Escape => "Escape",
-            KeyCode::F1 => "F1",
-            KeyCode::F2 => "F2",
-            KeyCode::F3 => "F3",
-            KeyCode::F4 => "F4",
-            KeyCode::F5 => "F5",
-            KeyCode::F6 => "F6",
-            KeyCode::F7 => "F7",
-            KeyCode::F8 => "F8",
-            KeyCode::F9 => "F9",
-            KeyCode::F10 => "F10",
-            KeyCode::F11 => "F11",
-            KeyCode::F12 => "F12",
-            KeyCode::Backtick => "`",
-            KeyCode::Tilde => "~",
-            KeyCode::Num1 => "1",
-            KeyCode::ExclamationPoint => "!",
-            KeyCode::Num2 => "2",
-            KeyCode::At => "@",
-            KeyCode::Num3 => "3",
-            KeyCode::Hashtag => "#",
-            KeyCode::Num4 => "4",
-            KeyCode::Dollar => "$",
-            KeyCode::Num5 => "5",
-            KeyCode::Percent => "%",
-            KeyCode::Num6 => "6",
-            KeyCode::Caret => "^",
-            KeyCode::Num7 => "7",
-            KeyCode::Ampersand => "&",
-            KeyCode::Num8 => "8",
-            KeyCode::Asterisks => "*",
-            KeyCode::Num9 => "9",
-            KeyCode::OpenParenthesis => "(",
-            KeyCode::Num0 => "0",
-            KeyCode::CloseParenthesis => ")",
-            KeyCode::Minus => "-",
-            KeyCode::Underscore => "_",
-            KeyCode::Equals => "=",
-            KeyCode::Plus => "+",
-            KeyCode::Backspace => "Backspace",
-            KeyCode::Tab => "Tab",
-            KeyCode::Q => "Q",
-            KeyCode::W => "W",
-            KeyCode::E => "E",
-            KeyCode::R => "R",
-            KeyCode::T => "T",
-            KeyCode::Y => "Y",
-            KeyCode::U => "U",
-            KeyCode::I => "I",
-            KeyCode::O => "O",
-            KeyCode::P => "P",
-            KeyCode::OpenBracket => "[",
-            KeyCode::OpenBrace => "{",
-            KeyCode::CloseBracket => "]",
-            KeyCode::CloseBrace => "}",
-            KeyCode::Backslash => "\\",
-            KeyCode::Pipe => "|",
-            KeyCode::CapsLock => "CapsLock",
-            KeyCode::A => "A",
-            KeyCode::S => "S",
-            KeyCode::D => "D",
-            KeyCode::F => "F",
-            KeyCode::G => "G",
-            KeyCode::H => "H",
-            KeyCode::J => "J",
-            KeyCode::K => "K",
-            KeyCode::L => "L",
-            KeyCode::SemiColon => ";",
-            KeyCode::Colon => ":",
-            KeyCode::Apostrophe => "'",
-            KeyCode::Quote => "\"",
-            KeyCode::Return => "Return",
-            KeyCode::LShift => "LShift",
-            KeyCode::Z => "Z",
-            KeyCode::X => "X",
-            KeyCode::C => "C",
-            KeyCode::V => "V",
-            KeyCode::B => "B",
-            KeyCode::N => "N",
-            KeyCode::M => "M",
-            KeyCode::Comma => ",",
-            KeyCode::LessThan => "<",
-            KeyCode::Period => ".",
-            KeyCode::GreaterThan => ">",
-            KeyCode::ForwardSlash => "/",
-            KeyCode::QuestionMark => "?",
-            KeyCode::RShift => "RShift",
-            KeyCode::LFunction => "LFunction",
-            KeyCode::LControl => "LControl",
-            KeyCode::LOption => "LOption",
-            KeyCode::LWindows => "LWindows",
-            KeyCode::LCommand => "LCommand",
-            KeyCode::Space => "Space",
-            KeyCode::RAlt => "RAlt",
-            KeyCode::LAlt => "LAlt",
-            KeyCode::RCommand => "RCommand",
-            KeyCode::RWindows => "RWindows",
-            KeyCode::ROption => "ROption",
-            KeyCode::RFunction => "RFunction",
-            KeyCode::RControl => "RControl",
-            KeyCode::Insert => "Insert",
-            KeyCode::Delete => "Delete",
-            KeyCode::Home => "Home",
-            KeyCode::End => "End",
-            KeyCode::PageUp => "PageUp",
-            KeyCode::PageDown => "PageDown",
-            KeyCode::UpArrow => "UpArrow",
-            KeyCode::DownArrow => "DownArrow",
-            KeyCode::LeftArrow => "LeftArrow",
-            KeyCode::RightArrow => "RightArrow",
-        };
+static KEY_STRING_MAP: Lazy<HashMap<KeyCode, &str>> = Lazy::new(|| {
+    HashMap::from([
+        (KeyCode::Escape, "Escape"),
+        (KeyCode::F1, "F1"),
+        (KeyCode::F2, "F2"),
+        (KeyCode::F3, "F3"),
+        (KeyCode::F4, "F4"),
+        (KeyCode::F5, "F5"),
+        (KeyCode::F6, "F6"),
+        (KeyCode::F7, "F7"),
+        (KeyCode::F8, "F8"),
+        (KeyCode::F9, "F9"),
+        (KeyCode::F10, "F10"),
+        (KeyCode::F11, "F11"),
+        (KeyCode::F12, "F12"),
+        (KeyCode::Backtick, "`"),
+        (KeyCode::Tilde, "~"),
+        (KeyCode::Num1, "1"),
+        (KeyCode::ExclamationPoint, "!"),
+        (KeyCode::Num2, "2"),
+        (KeyCode::At, "@"),
+        (KeyCode::Num3, "3"),
+        (KeyCode::Hashtag, "#"),
+        (KeyCode::Num4, "4"),
+        (KeyCode::Dollar, "$"),
+        (KeyCode::Num5, "5"),
+        (KeyCode::Percent, "%"),
+        (KeyCode::Num6, "6"),
+        (KeyCode::Caret, "^"),
+        (KeyCode::Num7, "7"),
+        (KeyCode::Ampersand, "&"),
+        (KeyCode::Num8, "8"),
+        (KeyCode::Asterisks, "*"),
+        (KeyCode::Num9, "9"),
+        (KeyCode::OpenParenthesis, "("),
+        (KeyCode::Num0, "0"),
+        (KeyCode::CloseParenthesis, ")"),
+        (KeyCode::Minus, "-"),
+        (KeyCode::Underscore, "_"),
+        (KeyCode::Equals, "="),
+        (KeyCode::Plus, "+"),
+        (KeyCode::Backspace, "Backspace"),
+        (KeyCode::Tab, "Tab"),
+        (KeyCode::Q, "Q"),
+        (KeyCode::W, "W"),
+        (KeyCode::E, "E"),
+        (KeyCode::R, "R"),
+        (KeyCode::T, "T"),
+        (KeyCode::Y, "Y"),
+        (KeyCode::U, "U"),
+        (KeyCode::I, "I"),
+        (KeyCode::O, "O"),
+        (KeyCode::P, "P"),
+        (KeyCode::OpenBracket, "["),
+        (KeyCode::OpenBrace, "{"),
+        (KeyCode::CloseBracket, "]"),
+        (KeyCode::CloseBrace, "}"),
+        (KeyCode::Backslash, "\\"),
+        (KeyCode::Pipe, "|"),
+        (KeyCode::CapsLock, "CapsLock"),
+        (KeyCode::A, "A"),
+        (KeyCode::S, "S"),
+        (KeyCode::D, "D"),
+        (KeyCode::F, "F"),
+        (KeyCode::G, "G"),
+        (KeyCode::H, "H"),
+        (KeyCode::J, "J"),
+        (KeyCode::K, "K"),
+        (KeyCode::L, "L"),
+        (KeyCode::SemiColon, ";"),
+        (KeyCode::Colon, ":"),
+        (KeyCode::Apostrophe, "'"),
+        (KeyCode::Quote, "\""),
+        (KeyCode::Return, "Return"),
+        (KeyCode::LShift, "LShift"),
+        (KeyCode::Z, "Z"),
+        (KeyCode::X, "X"),
+        (KeyCode::C, "C"),
+        (KeyCode::V, "V"),
+        (KeyCode::B, "B"),
+        (KeyCode::N, "N"),
+        (KeyCode::M, "M"),
+        (KeyCode::Comma, "),"),
+        (KeyCode::LessThan, "<"),
+        (KeyCode::Period, "."),
+        (KeyCode::GreaterThan, ">"),
+        (KeyCode::ForwardSlash, "/"),
+        (KeyCode::QuestionMark, "?"),
+        (KeyCode::RShift, "RShift"),
+        (KeyCode::LFunction, "LFunction"),
+        (KeyCode::LControl, "LControl"),
+        (KeyCode::LOption, "LOption"),
+        (KeyCode::LWindows, "LWindows"),
+        (KeyCode::LCommand, "LCommand"),
+        (KeyCode::Space, "Space"),
+        (KeyCode::RAlt, "RAlt"),
+        (KeyCode::LAlt, "LAlt"),
+        (KeyCode::RCommand, "RCommand"),
+        (KeyCode::RWindows, "RWindows"),
+        (KeyCode::ROption, "ROption"),
+        (KeyCode::RFunction, "RFunction"),
+        (KeyCode::RControl, "RControl"),
+        (KeyCode::Insert, "Insert"),
+        (KeyCode::Delete, "Delete"),
+        (KeyCode::Home, "Home"),
+        (KeyCode::End, "End"),
+        (KeyCode::PageUp, "PageUp"),
+        (KeyCode::PageDown, "PageDown"),
+        (KeyCode::UpArrow, "UpArrow"),
+        (KeyCode::DownArrow, "DownArrow"),
+        (KeyCode::LeftArrow, "LeftArrow"),
+        (KeyCode::RightArrow, "RightArrow"),
+    ])
+});
 
-        str.to_string()
+impl KeyCode {
+    pub fn serialize(&self) -> String {
+        KEY_STRING_MAP[self].to_string()
+    }
+
+    pub fn deserialize(data: String) -> Result<Self, ()> {
+        let mut result: Result<Self, ()> = Err(());
+
+        for (key, str) in KEY_STRING_MAP.iter() {
+            if str.eq_ignore_ascii_case(data.as_str()) {
+                result = Ok(key.clone());
+                break;
+            }
+        }
+
+        result
     }
 }
 
@@ -338,7 +357,7 @@ impl From<device_query::Keycode> for KeyCode {
 }
 
 impl KeyCode {
-    pub fn get_modifier(&self) -> Option<KeyModifier> {
+    pub fn as_modifier(&self) -> Option<KeyModifier> {
         return match self {
             KeyCode::LControl => Some(KeyModifier::CtrlCmd),
             KeyCode::RControl => Some(KeyModifier::CtrlCmd),
@@ -359,10 +378,32 @@ impl KeyCode {
     }
 }
 
-#[derive(PartialEq, Clone)]
+// include discriminant and Ord for Vec<KeyModifier>.sort(), should end up as: Control, Alt, Shift, Fn
+#[derive(PartialEq, Clone, PartialOrd, Eq, Ord)]
 pub enum KeyModifier {
-    CtrlCmd,  // Control, Left or Right + Command, Left or Right
-    Shift,    // Shift, Left or Right
-    AltOpt,   // Alt on windows, Option on MacOS
-    Function, // Function key (windows only?)
+    CtrlCmd = 1,  // Control, Left or Right + Command, Left or Right
+    AltOpt = 2,   // Alt on windows, Option on MacOS
+    Shift = 3,    // Shift, Left or Right
+    Function = 4, // Function key (windows only?)
+}
+
+impl KeyModifier {
+    pub fn serialize(&self) -> char {
+        match self {
+            KeyModifier::CtrlCmd => '^',
+            KeyModifier::Shift => '_',
+            KeyModifier::AltOpt => '*',
+            KeyModifier::Function => '~',
+        }
+    }
+
+    pub fn deserialize(data: char) -> Result<Self, ()> {
+        match data {
+            '^' => Ok(KeyModifier::CtrlCmd),
+            '_' => Ok(KeyModifier::Shift),
+            '*' => Ok(KeyModifier::AltOpt),
+            '~' => Ok(KeyModifier::Function),
+            _ => Err(()),
+        }
+    }
 }

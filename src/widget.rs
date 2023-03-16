@@ -172,7 +172,7 @@ impl KeybindWidget<'_> {
             // key down
             let keycode = KeyCode::from(key.clone());
 
-            if let Some(modifier) = keycode.get_modifier() {
+            if let Some(modifier) = keycode.as_modifier() {
                 self.state.mods.push(modifier);
                 continue;
             }
@@ -206,7 +206,7 @@ impl KeybindWidget<'_> {
                 continue;
             }
 
-            if let Some(modifier) = keycode.get_modifier() {
+            if let Some(modifier) = keycode.as_modifier() {
                 self.state.mods.retain(|m| *m != modifier);
             }
 
@@ -235,7 +235,7 @@ impl Widget for KeybindWidget<'_> {
         painter.text(
             response.rect.center(),
             Align2::CENTER_CENTER,
-            self.value.simple_name(),
+            self.value.serialize(),
             FontId::default(),
             visuals.text_color(),
         );
