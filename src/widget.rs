@@ -1,4 +1,4 @@
-use crate::*;
+use crate::{keycodes::KeyModifier, *};
 use device_query::{DeviceQuery, DeviceState};
 use egui::{Align2, FontId, Id, Response, Sense, Ui, Widget};
 use egui_modal::Modal;
@@ -236,7 +236,6 @@ impl Widget for KeybindWidget<'_> {
 
         if self.state.active {
             self.run_input(ui);
-            //println!("digga");
         }
 
         if response.clicked() {
