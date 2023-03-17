@@ -64,7 +64,9 @@ impl KeyBind {
 
                     match deserialized_key {
                         Ok(key) => {
-                            result = Ok(Self::new(key, modifiers));
+                            let mods = if key.is_some() { modifiers } else { vec![] };
+
+                            result = Ok(Self::new(key, mods));
                         }
 
                         _ => (),
