@@ -24,6 +24,13 @@ impl KeyBind {
         }
     }
 
+    pub fn empty() -> Self {
+        Self {
+            key: None,
+            modifiers: vec![],
+        }
+    }
+
     pub fn serialize(&mut self) -> String {
         match &self.key {
             Some(k) => {
