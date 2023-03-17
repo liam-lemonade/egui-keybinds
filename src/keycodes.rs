@@ -379,7 +379,7 @@ impl KeyCode {
 }
 
 // include discriminant and Ord for Vec<KeyModifier>.sort(), should end up as: Control, Alt, Shift, Fn
-#[derive(PartialEq, Clone, PartialOrd, Eq, Ord)]
+#[derive(PartialEq, Clone, PartialOrd, Eq, Ord, Hash)]
 pub enum KeyModifier {
     CtrlCmd = 1,  // Control, Left or Right + Command, Left or Right
     AltOpt = 2,   // Alt on windows, Option on MacOS
