@@ -15,8 +15,8 @@ struct Gui {
 impl Gui {
     fn new() -> Self {
         Self {
-            key1: KeyBind::new(KeyCode::A, vec![]),
-            key2: KeyBind::new(KeyCode::B, vec![]),
+            key1: KeyBind::new(Some(KeyCode::A), vec![]),
+            key2: KeyBind::new(Some(KeyCode::B), vec![]),
         }
     }
 }

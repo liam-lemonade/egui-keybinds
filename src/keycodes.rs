@@ -239,12 +239,16 @@ impl KeyCode {
         KEY_STRING_MAP[self].to_string()
     }
 
-    pub fn deserialize(data: String) -> Result<Self, ()> {
-        let mut result: Result<Self, ()> = Err(());
+    pub fn deserialize(data: String) -> Result<Option<Self>, ()> {
+        let mut result: Result<Option<Self>, ()> = Err(());
+
+        if data == "..." {
+            return Ok(None);
+        }
 
         for (key, str) in KEY_STRING_MAP.iter() {
             if str.eq_ignore_ascii_case(data.as_str()) {
-                result = Ok(key.clone());
+                result = Ok(Some(key.clone()));
                 break;
             }
         }

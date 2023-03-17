@@ -700,7 +700,7 @@ dependencies = [
 
 [[package]]
 name = "egui-keybinds"
-version = "2.2.6"
+version = "3.2.6"
 dependencies = [
  "device_query",
  "eframe",

@@ -17,11 +17,8 @@ pub struct KeyBind {
 }
 
 impl KeyBind {
-    pub fn new(key: KeyCode, modifiers: Vec<KeyModifier>) -> Self {
-        Self {
-            key: Some(key),
-            modifiers,
-        }
+    pub fn new(key: Option<KeyCode>, modifiers: Vec<KeyModifier>) -> Self {
+        Self { key, modifiers }
     }
 
     pub fn empty() -> Self {
