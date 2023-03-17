@@ -1,9 +1,9 @@
 extern crate device_query;
 extern crate eframe;
 extern crate egui;
-extern crate egui_modal;
 extern crate once_cell;
 
+pub mod helper;
 pub mod keycodes;
 pub mod widget;
 

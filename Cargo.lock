@@ -700,22 +700,12 @@ dependencies = [
 
 [[package]]
 name = "egui-keybinds"
-version = "1.2.4"
+version = "2.2.4"
 dependencies = [
  "device_query",
  "eframe",
  "egui",
- "egui-modal",
  "once_cell",
-]
-
-[[package]]
-name = "egui-modal"
-version = "0.2.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f15e5ba88bf7df3aafac7c97f3095d92beb4de9ecf9bc4e2387cfddea6114bde"
-dependencies = [
- "egui",
 ]
 
 [[package]]

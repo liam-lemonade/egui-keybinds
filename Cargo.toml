@@ -1,10 +1,10 @@
 [package]
 name = "egui-keybinds"
-version = "1.2.4"
+version = "2.2.4"
 repository = "https://github.com/TheRacc2/egui-keybinds"
 edition = "2021"
-description = "Adds a keybind system to egui"
-keywords = ["egui", "input", "keyboard", "keybind"]
+description = "keybinding system developed for EGUI"
+keywords = ["egui", "input", "keyboard", "keybind", "bind"]
 categories = ["gui"]
 license = "GPL-3.0"
 
@@ -13,6 +13,5 @@ license = "GPL-3.0"
 [dependencies]
 egui = "0.21.0"
 eframe = "0.21.3"
-egui-modal = "0.2.2"
 device_query = "1.1.2"
 once_cell = "1.17.1"
