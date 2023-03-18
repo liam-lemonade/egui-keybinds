@@ -1,6 +1,6 @@
 [package]
 name = "egui-keybinds"
-version = "3.3.7"
+version = "3.3.8"
 repository = "https://github.com/TheRacc2/egui-keybinds"
 edition = "2021"
 description = "keybinding system developed for EGUI"
