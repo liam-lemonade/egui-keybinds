@@ -58,7 +58,7 @@ impl KeyBindWidget<'_> {
                     state.modifiers_held.push(modifier);
                 }
             } else {
-                self.value.keycode = Some(key);
+                self.value.key = Some(key);
                 self.value.modifiers = state.modifiers_held.clone();
 
                 return true;
@@ -71,7 +71,7 @@ impl KeyBindWidget<'_> {
             if let Some(modifier) = key.as_modifier() {
                 state.modifiers_held.retain(|m| *m != modifier);
 
-                self.value.keycode = Some(key);
+                self.value.key = Some(key);
                 self.value.modifiers = state.modifiers_held.clone();
 
                 return true;
@@ -146,7 +146,7 @@ impl Widget for KeyBindWidget<'_> {
         }
 
         if response.secondary_clicked() {
-            self.value.keycode = None;
+            self.value.key = None;
             self.value.modifiers = vec![];
 
             state.active = false;

@@ -12,24 +12,24 @@ pub use widget::*;
 
 #[derive(Clone, Hash)]
 pub struct KeyBind {
-    pub keycode: Option<KeyCode>,
+    pub key: Option<KeyCode>,
     pub modifiers: Vec<KeyModifier>,
 }
 
 impl KeyBind {
-    pub fn new(keycode: Option<KeyCode>, modifiers: Vec<KeyModifier>) -> Self {
-        Self { keycode, modifiers }
+    pub fn new(key: Option<KeyCode>, modifiers: Vec<KeyModifier>) -> Self {
+        Self { key, modifiers }
     }
 
     pub fn empty() -> Self {
         Self {
-            keycode: None,
+            key: None,
             modifiers: vec![],
         }
     }
 
     pub fn serialize(&mut self) -> String {
-        match &self.keycode {
+        match &self.key {
             Some(k) => {
                 let mut prefix = String::with_capacity(self.modifiers.len());
 
